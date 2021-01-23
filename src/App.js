@@ -17,6 +17,9 @@ class App extends React.Component {
       response.json().then((carslist) => this.setState({ cars: carslist }))
     );
   }
+  handleChange = (e) => {
+    this.setState({ searchField: e.target.value });
+  };
   render() {
     const { cars, searchField } = this.state;
     const filteredCars = cars.filter((car) =>
@@ -24,10 +27,8 @@ class App extends React.Component {
     );
     return (
       <div className='App'>
-        <SearchBox
-          placeholder='Search Cars'
-          handleChange={(e) => this.setState({ searchField: e.target.value })}
-        />
+        <h1>Car Listing</h1>
+        <SearchBox placeholder='Search Cars' handleChange={this.handleChange} />
         <CardList cars={filteredCars} />
       </div>
     );
